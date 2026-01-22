@@ -1,10 +1,10 @@
 #include "Manager.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
-/* ===== HỖ TRỢ ===== */
 static void pause() {
     cout << "\nNhan Enter de tiep tuc...";
     cin.ignore();
@@ -309,15 +309,39 @@ void Manager::menu() {
 
         else if (choice == 7) {
             clear();
-            for (auto &p : products) p.output();
+
+            // Sap xep san pham theo ma
+            sort(products.begin(), products.end(),
+                [](const Product &a, const Product &b) {
+                    return a.getId() < b.getId();
+                });
+
+            cout << "\n===== DANH SACH SAN PHAM =====\n";
+            for (auto &p : products) {
+                p.output();
+            }
+
             pause();
         }
 
+
         else if (choice == 8) {
             clear();
-            for (auto &o : orders) o.output();
+
+            // Sap xep don hang theo ma
+            sort(orders.begin(), orders.end(),
+                [](const Order &a, const Order &b) {
+                    return a.getId() < b.getId();
+                });
+
+            cout << "\n===== DANH SACH DON HANG =====\n";
+            for (auto &o : orders) {
+                o.output();
+            }
+
             pause();
         }
+
 
     } while (choice != 9);
 
