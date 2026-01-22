@@ -323,8 +323,6 @@ void Manager::menu() {
 
             pause();
         }
-
-
         else if (choice == 8) {
             clear();
 
